@@ -14,7 +14,11 @@ st.set_page_config(
 # LOAD DATA
 @st.cache_data
 def load_data():
-    df = pd.read_csv("notebooks/Cleaned_HHS_Care_Dataset.csv")
+    
+    DATA_PATH = Path(__file__).parent / "data" / "Cleaned_HHS_Care_Dataset.csv"
+    df = pd.read_csv(DATA_PATH)
+
+    #df = pd.read_csv("notebooks/Cleaned_HHS_Care_Dataset.csv")
 
     # Converting Date column to datetime
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")

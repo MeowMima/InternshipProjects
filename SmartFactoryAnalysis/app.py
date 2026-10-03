@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from scipy.stats import f_oneway
+from pathlib import Path
 
 # PAGE CONFIGURATION
 
@@ -13,7 +14,11 @@ st.set_page_config(
 # LOADING DATA
 @st.cache_data                            # decorator to cache the data for better performance
 def load_data():                          #creating loading data method
-    df = pd.read_csv("data/6GNetworkAnalysis.csv")
+
+    DATA_PATH = Path(__file__).parent / "data" / "6GNetworkAnalysis.csv"
+    df = pd.read_csv(DATA_PATH)
+    
+    #df = pd.read_csv("data/6GNetworkAnalysis.csv")
     return df
 
 df = load_data()                          #creating df object to call the method
